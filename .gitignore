@@ -1,0 +1,11 @@
+# dependencies
+node_modules/
+
+# development
+coverage
+dist
+.idea/
+.vscode/
+
+# misc
+.DS_Store

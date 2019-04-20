@@ -1,0 +1,36 @@
+{
+  "name": "hetic-crypto-project-2019",
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "1.7.0",
+    "@typescript-eslint/parser": "1.7.0",
+    "codecov": "3.3.0",
+    "eslint": "5.16.0",
+    "eslint-config-prettier": "4.1.0",
+    "husky": "1.3.1",
+    "lint-staged": "8.1.5",
+    "prettier": "1.17.0",
+    "typescript": "3.4.4"
+  },
+  "engines": {
+    "node": ">=11"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx,json,css,scss,html}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
