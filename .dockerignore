@@ -1,0 +1,8 @@
+.DS_Store
+.git/
+.vscode/
+.idea/
+node_modules/
+packages/**/.vscode/
+packages/**/.idea/
+packages/**/node_modules/
