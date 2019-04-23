@@ -28,7 +28,6 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "stripInternal": true,
-    "target": "esnext",
-    "typeRoots": ["node_modules/@types"]
+    "target": "esnext"
   }
 }

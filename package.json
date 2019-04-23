@@ -2,7 +2,8 @@
   "name": "hetic-crypto-project-2019",
   "private": true,
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "setup": "docker-compose up -d"
   },
   "dependencies": {},
   "devDependencies": {
