@@ -1,0 +1,27 @@
+{
+  "name": "hetic-graphql",
+  "version": "1.0.0",
+  "scripts": {
+    "generate": "graphqlgen",
+    "start": "ts-node-dev --respawn --transpileOnly src/server.ts",
+    "test": "jest"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource": "^0.3.1",
+    "apollo-server": "2.4.8",
+    "graphql": "^14.2.1",
+    "graphqlgen": "0.6.0-rc9",
+    "pg": "^7.10.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.7",
+    "@types/pg": "^7.4.14",
+    "apollo-server-core": "^2.4.8",
+    "apollo-server-testing": "2.4.8",
+    "jest": "^24.7.1",
+    "ts-jest": "^24.0.2",
+    "ts-node-dev": "^1.0.0-pre.32"
+  }
+}

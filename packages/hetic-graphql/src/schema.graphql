@@ -1,0 +1,55 @@
+# https://www.apollographql.com/docs/apollo-server/essentials/schema#documentation
+
+"Type of digital currency that uses cryptography for security and anti-counterfeiting measures"
+type Crypto {
+  """
+  Unique identifier
+  """
+  id: Int!
+
+  """
+  Symbol of the cryptocurrency
+  BTC, ETH, XRP, LTC, etc.
+  """
+  symbol: String!
+
+  """
+  Name of the cryptocurrency
+  Bitcoin, Ethereum, Ripple, Litecoin etc.
+  """
+  name: String
+}
+
+type Value {
+  """
+  Unique identifier
+  """
+  id: Int!
+
+  """
+  The associated cryptocurrency
+  """
+  cryptocurrency: Crypto!
+
+  """
+  Creation date of the value
+  """
+  date: String!
+
+  """
+  Cryptocurrency value
+  """
+  value: Float!
+}
+
+type Query {
+  """
+  Retrieve cryptocurrencies from the "crypto" table
+  """
+  cryptocurrencies: [Crypto!]!
+
+  """
+  Retrieve values of the cryptocurrencies from the "values" table
+  """
+  values: [Value!]!
+}

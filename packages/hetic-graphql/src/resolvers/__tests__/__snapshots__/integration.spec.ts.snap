@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Queries fetches list of cryptocurrencies 1`] = `
+Object {
+  "data": Object {
+    "cryptocurrencies": Array [
+      Object {
+        "id": 1,
+        "name": "Bitcoin",
+        "symbol": "BTC",
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries fetches list of values 1`] = `
+Object {
+  "data": Object {
+    "values": Array [
+      Object {
+        "date": "1556297840685",
+        "id": 1,
+        "value": 100000.1,
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
