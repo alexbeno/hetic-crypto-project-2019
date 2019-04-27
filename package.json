@@ -4,6 +4,7 @@
   "scripts": {
     "start": "npm-run-all --parallel start:*",
     "start:graphql": "yarn --cwd packages/hetic-graphql start",
+    "start:front": "yarn --cwd packages/front start",
     "test": "npm-run-all \"test:* {*}\" --",
     "test:graphql": "yarn --cwd packages/hetic-graphql test",
     "lint": "npm-run-all lint:*",
@@ -26,9 +27,15 @@
   "engines": {
     "node": ">=11"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/react-scripts",
+      "**/react-scripts/**"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
