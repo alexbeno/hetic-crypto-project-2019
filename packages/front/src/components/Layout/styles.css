@@ -1,0 +1,8 @@
+.AppLayout {
+  display: flex;
+  margin: 20px;
+}
+
+.PageContent {
+  margin-left: 60px;
+}
