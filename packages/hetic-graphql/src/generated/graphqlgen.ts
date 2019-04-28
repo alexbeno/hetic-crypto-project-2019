@@ -3,13 +3,23 @@
 import { GraphQLResolveInfo } from 'graphql'
 import { Crypto, Value, Context } from '../types'
 
+export type CryptoOrderByInput = 'starred_ASC' | 'starred_DESC'
+
 export namespace QueryResolvers {
   export const defaultResolvers = {}
 
-  export type CryptocurrenciesResolver =
+  export interface ArgsCryptoes {
+    orderBy?: CryptoOrderByInput | null
+  }
+
+  export interface ArgsValues {
+    createdAt_in?: string[] | null
+  }
+
+  export type CryptoesResolver =
     | ((
         parent: undefined,
-        args: {},
+        args: ArgsCryptoes,
         ctx: Context,
         info: GraphQLResolveInfo,
       ) => Crypto[] | Promise<Crypto[]>)
@@ -17,7 +27,7 @@ export namespace QueryResolvers {
         fragment: string
         resolve: (
           parent: undefined,
-          args: {},
+          args: ArgsCryptoes,
           ctx: Context,
           info: GraphQLResolveInfo,
         ) => Crypto[] | Promise<Crypto[]>
@@ -26,7 +36,7 @@ export namespace QueryResolvers {
   export type ValuesResolver =
     | ((
         parent: undefined,
-        args: {},
+        args: ArgsValues,
         ctx: Context,
         info: GraphQLResolveInfo,
       ) => Value[] | Promise<Value[]>)
@@ -34,17 +44,17 @@ export namespace QueryResolvers {
         fragment: string
         resolve: (
           parent: undefined,
-          args: {},
+          args: ArgsValues,
           ctx: Context,
           info: GraphQLResolveInfo,
         ) => Value[] | Promise<Value[]>
       }
 
   export interface Type {
-    cryptocurrencies:
+    cryptoes:
       | ((
           parent: undefined,
-          args: {},
+          args: ArgsCryptoes,
           ctx: Context,
           info: GraphQLResolveInfo,
         ) => Crypto[] | Promise<Crypto[]>)
@@ -52,7 +62,7 @@ export namespace QueryResolvers {
           fragment: string
           resolve: (
             parent: undefined,
-            args: {},
+            args: ArgsCryptoes,
             ctx: Context,
             info: GraphQLResolveInfo,
           ) => Crypto[] | Promise<Crypto[]>
@@ -61,7 +71,7 @@ export namespace QueryResolvers {
     values:
       | ((
           parent: undefined,
-          args: {},
+          args: ArgsValues,
           ctx: Context,
           info: GraphQLResolveInfo,
         ) => Value[] | Promise<Value[]>)
@@ -69,7 +79,7 @@ export namespace QueryResolvers {
           fragment: string
           resolve: (
             parent: undefined,
-            args: {},
+            args: ArgsValues,
             ctx: Context,
             info: GraphQLResolveInfo,
           ) => Value[] | Promise<Value[]>
@@ -82,6 +92,7 @@ export namespace CryptoResolvers {
     id: (parent: Crypto) => parent.id,
     symbol: (parent: Crypto) => parent.symbol,
     name: (parent: Crypto) => (parent.name === undefined ? null : parent.name),
+    starred: (parent: Crypto) => parent.starred,
   }
 
   export type IdResolver =
@@ -135,6 +146,23 @@ export namespace CryptoResolvers {
         ) => string | null | Promise<string | null>
       }
 
+  export type StarredResolver =
+    | ((
+        parent: Crypto,
+        args: {},
+        ctx: Context,
+        info: GraphQLResolveInfo,
+      ) => boolean | Promise<boolean>)
+    | {
+        fragment: string
+        resolve: (
+          parent: Crypto,
+          args: {},
+          ctx: Context,
+          info: GraphQLResolveInfo,
+        ) => boolean | Promise<boolean>
+      }
+
   export interface Type {
     id:
       | ((
@@ -186,13 +214,29 @@ export namespace CryptoResolvers {
             info: GraphQLResolveInfo,
           ) => string | null | Promise<string | null>
         }
+
+    starred:
+      | ((
+          parent: Crypto,
+          args: {},
+          ctx: Context,
+          info: GraphQLResolveInfo,
+        ) => boolean | Promise<boolean>)
+      | {
+          fragment: string
+          resolve: (
+            parent: Crypto,
+            args: {},
+            ctx: Context,
+            info: GraphQLResolveInfo,
+          ) => boolean | Promise<boolean>
+        }
   }
 }
 
 export namespace ValueResolvers {
   export const defaultResolvers = {
     id: (parent: Value) => parent.id,
-    date: (parent: Value) => parent.date,
     value: (parent: Value) => parent.value,
   }
 
@@ -213,7 +257,7 @@ export namespace ValueResolvers {
         ) => number | Promise<number>
       }
 
-  export type CryptocurrencyResolver =
+  export type CryptoResolver =
     | ((
         parent: Value,
         args: {},
@@ -230,7 +274,7 @@ export namespace ValueResolvers {
         ) => Crypto | Promise<Crypto>
       }
 
-  export type DateResolver =
+  export type CreatedAtResolver =
     | ((
         parent: Value,
         args: {},
@@ -282,7 +326,7 @@ export namespace ValueResolvers {
           ) => number | Promise<number>
         }
 
-    cryptocurrency:
+    crypto:
       | ((
           parent: Value,
           args: {},
@@ -299,7 +343,7 @@ export namespace ValueResolvers {
           ) => Crypto | Promise<Crypto>
         }
 
-    date:
+    createdAt:
       | ((
           parent: Value,
           args: {},
@@ -335,10 +379,56 @@ export namespace ValueResolvers {
   }
 }
 
+export namespace MutationResolvers {
+  export const defaultResolvers = {}
+
+  export interface ArgsUpdateCrypto {
+    id: number
+    starred: boolean
+  }
+
+  export type UpdateCryptoResolver =
+    | ((
+        parent: undefined,
+        args: ArgsUpdateCrypto,
+        ctx: Context,
+        info: GraphQLResolveInfo,
+      ) => Crypto | null | Promise<Crypto | null>)
+    | {
+        fragment: string
+        resolve: (
+          parent: undefined,
+          args: ArgsUpdateCrypto,
+          ctx: Context,
+          info: GraphQLResolveInfo,
+        ) => Crypto | null | Promise<Crypto | null>
+      }
+
+  export interface Type {
+    updateCrypto:
+      | ((
+          parent: undefined,
+          args: ArgsUpdateCrypto,
+          ctx: Context,
+          info: GraphQLResolveInfo,
+        ) => Crypto | null | Promise<Crypto | null>)
+      | {
+          fragment: string
+          resolve: (
+            parent: undefined,
+            args: ArgsUpdateCrypto,
+            ctx: Context,
+            info: GraphQLResolveInfo,
+          ) => Crypto | null | Promise<Crypto | null>
+        }
+  }
+}
+
 export interface Resolvers {
   Query: QueryResolvers.Type
   Crypto: CryptoResolvers.Type
   Value: ValueResolvers.Type
+  Mutation: MutationResolvers.Type
 }
 
 // @ts-ignore

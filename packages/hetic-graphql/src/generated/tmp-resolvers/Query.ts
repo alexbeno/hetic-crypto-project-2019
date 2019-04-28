@@ -5,7 +5,7 @@ import { QueryResolvers } from '../graphqlgen'
 
 export const Query: QueryResolvers.Type = {
   ...QueryResolvers.defaultResolvers,
-  cryptocurrencies: (parent, args, ctx) => {
+  cryptoes: (parent, args, ctx) => {
     throw new Error('Resolver not implemented')
   },
   values: (parent, args, ctx) => {

@@ -44,7 +44,8 @@ export const server = new ApolloServer({
 
 if (process.env.NODE_ENV !== 'test') {
   // Etablish the database connection
-  pg.connect()
-  // Launches the web-server
-  server.listen().then(({ url }) => console.log(`🚀  Server ready at ${url}`))
+  pg.connect().then(() => {
+    // Launches the web-server
+    server.listen().then(({ url }) => console.log(`🚀  Server ready at ${url}`))
+  })
 }

@@ -3,10 +3,11 @@
 exports[`Queries fetches list of cryptocurrencies 1`] = `
 Object {
   "data": Object {
-    "cryptocurrencies": Array [
+    "cryptoes": Array [
       Object {
         "id": 1,
         "name": "Bitcoin",
+        "starred": false,
         "symbol": "BTC",
       },
     ],
@@ -26,7 +27,7 @@ Object {
   "data": Object {
     "values": Array [
       Object {
-        "date": "1556297840685",
+        "createdAt": "2019-04-21T22:00:00.000Z",
         "id": 1,
         "value": 100000.1,
       },

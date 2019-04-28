@@ -7,5 +7,6 @@ services:
       - '5432:5432'
     volumes:
       - database:/var/lib/postgresql/data
+    command: postgres -c log_statement=all
 volumes:
   database:

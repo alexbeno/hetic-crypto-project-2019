@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "generate": "graphqlgen",
-    "start": "tsnd src/server.ts",
+    "start": "tsnd --inspect -- src/server.ts",
     "test": "jest"
   },
   "license": "ISC",

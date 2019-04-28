@@ -4,13 +4,13 @@ export interface Crypto {
   id: number
   symbol: string
   name?: string
-  stared: boolean
+  starred: boolean
 }
 
 export interface Value {
   id: number
   cryptoId: number
-  date: string
+  date: Date
   value: number
 }
 

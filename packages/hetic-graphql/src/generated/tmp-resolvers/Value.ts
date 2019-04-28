@@ -6,7 +6,10 @@ import { ValueResolvers } from '../graphqlgen'
 export const Value: ValueResolvers.Type = {
   ...ValueResolvers.defaultResolvers,
 
-  cryptocurrency: (parent, args, ctx) => {
+  crypto: (parent, args, ctx) => {
+    throw new Error('Resolver not implemented')
+  },
+  createdAt: (parent, args, ctx) => {
     throw new Error('Resolver not implemented')
   },
 }

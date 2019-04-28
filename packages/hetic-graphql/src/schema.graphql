@@ -18,6 +18,10 @@ type Crypto {
   Bitcoin, Ethereum, Ripple, Litecoin etc.
   """
   name: String
+  """
+  Keep track of the cryptocurrency you find interesting
+  """
+  starred: Boolean!
 }
 
 type Value {
@@ -29,12 +33,12 @@ type Value {
   """
   The associated cryptocurrency
   """
-  cryptocurrency: Crypto!
+  crypto: Crypto!
 
   """
   Creation date of the value
   """
-  date: String!
+  createdAt: String!
 
   """
   Cryptocurrency value
@@ -42,14 +46,26 @@ type Value {
   value: Float!
 }
 
+enum CryptoOrderByInput {
+  starred_ASC
+  starred_DESC
+}
+
 type Query {
   """
   Retrieve cryptocurrencies from the "crypto" table
   """
-  cryptocurrencies: [Crypto!]!
+  cryptoes(orderBy: CryptoOrderByInput): [Crypto!]!
 
   """
   Retrieve values of the cryptocurrencies from the "values" table
   """
-  values: [Value!]!
+  values(createdAt_in: [String!]): [Value!]!
+}
+
+type Mutation {
+  """
+  Update the cryptocurrency
+  """
+  updateCrypto(id: Int!, starred: Boolean!): Crypto
 }

@@ -9,7 +9,14 @@ import { Crypto, Value } from '../../types'
 jest.mock('../../datasources/crypto', () => {
   class CryptoAPI {
     findAll(): Crypto[] {
-      return [{ id: 1, symbol: 'BTC', name: 'Bitcoin', stared: false }]
+      return [
+        {
+          id: 1,
+          symbol: 'BTC',
+          name: 'Bitcoin',
+          starred: false,
+        },
+      ]
     }
   }
   return { CryptoAPI }
@@ -18,7 +25,14 @@ jest.mock('../../datasources/crypto', () => {
 jest.mock('../../datasources/values', () => {
   class ValuesAPI {
     findAll(): Value[] {
-      return [{ id: 1, cryptoId: 1, date: '1556297840685', value: 100000.1 }]
+      return [
+        {
+          id: 1,
+          cryptoId: 1,
+          date: new Date('2019-04-21T22:00:00.000Z'),
+          value: 100000.1,
+        },
+      ]
     }
   }
   return { ValuesAPI }
@@ -28,18 +42,19 @@ const GET_VALUES = gql`
   query {
     values {
       id
-      date
+      createdAt
       value
     }
   }
 `
 
-const GET_CRYPTO = gql`
+const GET_CRYPTOES = gql`
   query {
-    cryptocurrencies {
+    cryptoes {
       id
       symbol
       name
+      starred
     }
   }
 `
@@ -61,6 +76,6 @@ describe('Queries', () => {
   })
 
   it('fetches list of cryptocurrencies', async () => {
-    expect(await client.query({ query: GET_CRYPTO })).toMatchSnapshot()
+    expect(await client.query({ query: GET_CRYPTOES })).toMatchSnapshot()
   })
 })
