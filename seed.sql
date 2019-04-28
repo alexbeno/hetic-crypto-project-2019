@@ -9,9 +9,8 @@ CREATE TABLE "crypto" (
 );
 CREATE TABLE "values" (
   "id"        serial PRIMARY KEY,
-  "cryptoId"  serial REFERENCES crypto(id),
-  "date"      date NOT NULL DEFAULT now(),
+  "crypto_id"  serial REFERENCES crypto(id),
+  "date"      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "value"     float NOT NULL
 );
-INSERT INTO "crypto" ("id", "symbol", "name", "stared") VALUES (1, 'BTC', 'Bitcoin', false);
-INSERT INTO "values" ("id", "cryptoId", "date", "value") VALUES (1, 1, '2019-04-22', 10000000.03);
+INSERT INTO "crypto" ("id", "symbol", "name", "stared") VALUES (1, 'BTCUSDT', 'BitcoinTetherUSD', true);
