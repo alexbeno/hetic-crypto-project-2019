@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "extends": ["plugin:@typescript-eslint/recommended", "prettier", "prettier/@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": { "ecmaVersion": 2018, "sourceType": "module" },
+  "rules": {
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "sort-imports": ["warn", { "ignoreDeclarationSort": true }],
+    "object-shorthand": ["warn", "always", { "avoidExplicitReturnArrows": true }],
+    "max-len": [
+      "error",
+      { "code": 100, "tabWidth": 2, "ignoreComments": false, "ignoreTrailingComments": false }
+    ]
+  }
+}
