@@ -1,0 +1,6 @@
+{
+  "clear": true,
+  "notify": false,
+  "transpileOnly": true,
+  "respawn": true
+}
