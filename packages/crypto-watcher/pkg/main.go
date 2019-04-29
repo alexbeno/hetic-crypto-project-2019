@@ -3,7 +3,6 @@ package main
 import (
 	"os"
 	"os/signal"
-	"strconv"
 
 	"github.com/sirupsen/logrus"
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
@@ -47,30 +46,9 @@ func main() {
 	for {
 		select {
 		case msg := <-binanceWS.TickerMessagesChan:
-			logrus.Infof("Received a new pricing update for currency %s: %s", msg.Symbol, msg.LastPrice)
-			currency, err := store.GetCryptoCurrencyFromSymbol(msg.Symbol)
-			if err != nil {
-				logrus.Errorf("an error occured while getting the currency from its symbol: %v", err)
-				continue
-			}
-
-			value, err := strconv.ParseFloat(msg.LastPrice, 32)
-			if err != nil {
-				logrus.Errorf("unsable to parse float from string: %v", err)
-				continue
-			}
-
-			if err := store.AddCryptoCurrencyValue(CryptoCurrencyValue{
-				Value:    value,
-				CryptoID: currency.ID,
-			}); err != nil {
-				logrus.Errorf("an error occured while adding the currency value: %v", err)
-				continue
-			}
+			logrus.Infof("Received a new message: %v", msg)
 		case <-interrupt:
-			if err := binanceWS.Close(); err != nil {
-				panic(err)
-			}
+			logrus.Info("Closing all websockets...")
 			return
 		}
 	}

@@ -52,32 +52,15 @@ func NewPSQLStore(connectionString string) (*PSQLStore, error) {
 
 // GetCryptoCurrencyFromSymbol gets a crypto currency from its symbol
 func (s *PSQLStore) GetCryptoCurrencyFromSymbol(symbol string) (*CryptoCurrency, error) {
-	currency := &CryptoCurrency{}
-	if err := s.db.Get(currency, "SELECT * FROM crypto WHERE symbol = $1", symbol); err != nil {
-		return nil, err
-	}
-
-	return currency, nil
+	return nil, nil
 }
 
 // ListCryptoCurrencies lists all the available crypto currency
 func (s *PSQLStore) ListCryptoCurrencies() ([]CryptoCurrency, error) {
-	currencies := []CryptoCurrency{}
-	if err := s.db.Select(&currencies, "SELECT * FROM crypto"); err != nil {
-		return nil, err
-	}
-
-	return currencies, nil
+	return []CryptoCurrency{}, nil
 }
 
 // AddCryptoCurrencyValue adds a new crypto currency value
 func (s *PSQLStore) AddCryptoCurrencyValue(value CryptoCurrencyValue) error {
-	if _, err := s.db.NamedExec(
-		"INSERT INTO values (crypto_id, value) VALUES (:crypto_id, :value)",
-		value,
-	); err != nil {
-		return err
-	}
-
 	return nil
 }
